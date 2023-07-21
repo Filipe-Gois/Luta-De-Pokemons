@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+// using System.Threading.Tasks;
 using luta_de_pokemons;
 
 namespace luta_de_pokemons
@@ -201,9 +201,21 @@ namespace luta_de_pokemons
                     case "2":
 
                         Thread.Sleep(2000);
-                        
-                        Console.WriteLine(pk.jogadorVida >= pk.jogadorVidaMaxima ? $"Ops, infelizmente você não pode ter sobrecura. Sua vida já atingiu o limite de {pk.jogadorVidaMaxima} HP." : $"Você curou {pk.jogadorCura} HP e agora possui {pk.Curar()} HP.", pk.Curar());
-                        
+
+                        if (pk.jogadorVida >= pk.jogadorVidaMaxima)
+                        {
+                            Console.WriteLine($"Ops, infelizmente você não pode ter sobrecura. Sua vida já atingiu o limite de {pk.jogadorVidaMaxima} HP.");
+
+                        }
+
+                        else
+                        {
+                            pk.Curar();
+                            Console.WriteLine($"Você curou {pk.jogadorCura} HP e agora possui {pk.Curar()} HP.");
+                            pk.jogadorVida = pk.jogadorVidaTotal;
+                        }
+
+
                         break;
 
                     default:
@@ -224,6 +236,15 @@ namespace luta_de_pokemons
                     Console.WriteLine($"{pk.vilaoNome} atacou e causou {pk.vilaoAtk} de dano à você.\n");
                 }
 
+                else
+                {
+                    pk.vilaoVida = 0;
+
+                    Thread.Sleep(2000);
+                    Console.WriteLine($"Você derrotou o pokemon {pk.vilaoNome}, parabéns!!");
+                    Environment.Exit(0);
+                }
+
                 if (pk.jogadorVida <= 0)
                 {
                     pk.jogadorVida = 0;
@@ -233,18 +254,11 @@ namespace luta_de_pokemons
 
                     Thread.Sleep(2000);
                     Console.WriteLine($"Você foi humilhado pelo pokemon {pk.vilaoNome}. Treine mais, {pk.nomeJogador}.");
-                    
+
                     Environment.Exit(0);
                 }
 
-                if (pk.vilaoVida <= 0)
-                {
-                    pk.vilaoVida = 0;
 
-                    Thread.Sleep(2000);
-                    Console.WriteLine($"Você derrotou o pokemon {pk.vilaoNome}, parabéns!!");
-                    Environment.Exit(0);
-                }
 
 
             } while (pk.jogadorVida > 0 || pk.vilaoVida > 0);

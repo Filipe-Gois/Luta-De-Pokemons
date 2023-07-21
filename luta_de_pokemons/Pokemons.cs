@@ -24,12 +24,12 @@ namespace luta_de_pokemons
 
 
 
-        public string? vilaoNome { get; set; } = "Snorlax";
+        public string vilaoNome { get; set; } = "Snorlax";
         public int vilaoVida { get; set; } = 350;
         public int jogadorvidaRestante { get; set; }
         public int vilaoCuraMaxima { get; set; } = 350;
         public int vilaoCura { get; set; } = 60;
-        public int vilaoAtk { get; set; } = 90;
+        public int vilaoAtk { get; set; } = 60;
 
 
         public int Curar()
